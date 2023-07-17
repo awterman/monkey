@@ -1,0 +1,43 @@
+on: [push]
+name: 'Go coverage report'
+
+jobs:
+  coverage:
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: stable
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Checkout wiki
+        uses: actions/checkout@v3
+        with:
+          repository: awterman/monkey.wiki
+          path: ./.github/wiki/
+
+      - name: Generate coverage report
+        shell: bash
+        env:
+          INPUT_CHART:  true
+          INPUT_REPORT: true
+        run: |
+          bash ./.coverage/coverage.sh ./.github/wiki/
+
+      - name: Push to wiki
+        shell: bash
+        run: |
+          cd ./.github/wiki/
+          git add --all
+          git diff-index --quiet HEAD && exit
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          test ${{inputs.amend}} == "true" && \
+            git commit --amend --no-edit && git push --force-with-lease || \
+            git commit -m "Update coverage" && git push
