@@ -9,10 +9,12 @@ import (
 	"github.com/agiledragon/gomonkey/v2/creflect"
 )
 
+// NewPatches returns a new Patches. Be sure to call `defer Patches.Reset()` on every `Patches`.
 func NewPatches() *gomonkey.Patches {
 	return gomonkey.NewPatches()
 }
 
+// Func applies a function patch.
 func Func[Fn any](patches *gomonkey.Patches, target Fn, replacement Fn) *gomonkey.Patches {
 	if patches == nil {
 		patches = gomonkey.NewPatches()
@@ -21,6 +23,7 @@ func Func[Fn any](patches *gomonkey.Patches, target Fn, replacement Fn) *gomonke
 	return patches.ApplyFunc(target, replacement)
 }
 
+// Var applies a variable patch.
 func Var[Var any](patches *gomonkey.Patches, target *Var, replacement Var) *gomonkey.Patches {
 	if patches == nil {
 		patches = gomonkey.NewPatches()
@@ -68,6 +71,7 @@ func funcToMethod(receiverType reflect.Type, doubleFunc any) reflect.Value {
 	})
 }
 
+// Method applies a method patch.
 func Method[Receiver any, Fn any](patches *gomonkey.Patches, receiver Receiver, method Fn, replacement Fn) *gomonkey.Patches {
 	if patches == nil {
 		patches = gomonkey.NewPatches()
