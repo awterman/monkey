@@ -2,6 +2,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/awterman/monkey.svg)](https://pkg.go.dev/github.com/awterman/monkey)
 [![Go Report Card](https://goreportcard.com/badge/github.com/awterman/monkey)](https://goreportcard.com/report/github.com/awterman/monkey)
 [![Go Coverage](https://github.com/awterman/monkey/wiki/coverage.svg)](https://raw.githack.com/wiki/awterman/monkey/coverage.html)
+[![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go)
 
 - Monkey is a generic implementation of the [gomonkey](https://github.com/agiledragon/gomonkey).
 - Monkey can be used in testing for stubbing.
