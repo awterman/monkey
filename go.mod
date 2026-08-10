@@ -2,4 +2,4 @@ module github.com/awterman/monkey
 
 go 1.20
 
-require github.com/agiledragon/gomonkey/v2 v2.14.1
+require github.com/agiledragon/gomonkey/v2 v2.14.2
